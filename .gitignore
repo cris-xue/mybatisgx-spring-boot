@@ -1,0 +1,26 @@
+# eclipse
+*.log
+*.temp
+.project
+*.prefs
+.classpath
+h2/*
+h2
+generated_code/*
+generated_code
+.settings
+.settings/*
+target/*
+target
+.factorypath
+.idea
+*.iml
+doc/*
+
+# maven
+*.releaseBackup
+*.versionsBackup
+release.properties
+
+# other
+.lingma
