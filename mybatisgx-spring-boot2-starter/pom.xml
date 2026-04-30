@@ -47,12 +47,12 @@
 			<dependency>
 				<groupId>com.mybatisgx</groupId>
 				<artifactId>mybatisgx-core</artifactId>
-				<version>${mybatisgx.version}</version>
+				<version>${mybatisgx.sb2.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.mybatisgx</groupId>
 				<artifactId>mybatisgx-spring</artifactId>
-				<version>${mybatisgx.version}</version>
+				<version>${mybatisgx.sb2.version}</version>
 			</dependency>
 
 			<dependency>
