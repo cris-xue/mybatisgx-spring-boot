@@ -22,6 +22,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<mybatisgx.sb2.version>0.0.9</mybatisgx.sb2.version>
+		<mybatisgx.sb3.version>0.0.9</mybatisgx.sb3.version>
+		<mybatisgx.sb4.version>0.0.9-sb4</mybatisgx.sb4.version>
 	</properties>
 
 	<build>
