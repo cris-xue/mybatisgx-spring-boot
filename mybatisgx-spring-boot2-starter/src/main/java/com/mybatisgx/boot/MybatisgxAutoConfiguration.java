@@ -1,10 +1,8 @@
 package com.mybatisgx.boot;
 
-import com.mybatisgx.ext.session.defaults.MybatisgxDefaultSqlSessionFactory;
 import org.apache.ibatis.mapping.DatabaseIdProvider;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.scripting.LanguageDriver;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.type.TypeHandler;
 import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
 import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
@@ -17,7 +15,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ResourceLoader;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 /**
@@ -38,11 +35,11 @@ public class MybatisgxAutoConfiguration extends MybatisAutoConfiguration {
         super(properties, interceptorsProvider, typeHandlersProvider, languageDriversProvider, resourceLoader, databaseIdProvider, configurationCustomizersProvider);
     }
 
-    @Override
+    /*@Override
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         SqlSessionFactory sqlSessionFactory = super.sqlSessionFactory(dataSource);
         return new MybatisgxDefaultSqlSessionFactory(sqlSessionFactory);
-    }
+    }*/
 
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer customizer() {
