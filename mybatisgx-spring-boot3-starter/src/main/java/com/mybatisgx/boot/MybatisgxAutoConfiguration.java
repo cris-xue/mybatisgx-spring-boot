@@ -43,10 +43,7 @@ public class MybatisgxAutoConfiguration extends MybatisAutoConfiguration {
         return new MybatisgxDefaultSqlSessionFactory(sqlSessionFactory);
     }*/
 
-    @Bean
-    public Jackson2ObjectMapperBuilderCustomizer customizer() {
-        return builder -> builder.mixIn(Object.class, IgnoreHandlerMixin.class);
-    }
+
 
     /*@Override
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {

@@ -1,8 +1,10 @@
 package com.mybatisgx.boot;
 
+import com.github.pagehelper.PageInterceptor;
 import org.apache.ibatis.session.Configuration;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.boot.autoconfigure.SqlSessionFactoryBeanCustomizer;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.ReflectionUtils;
 
@@ -33,5 +35,15 @@ public class MybatisgxConfiguration {
             ReflectionUtils.setField(field, mybatisgxConfiguration, value);
         });
         return mybatisgxConfiguration;
+    }
+
+    @Bean
+    public PageInterceptor pageInterceptor() {
+        return new PageInterceptor();
+    }
+
+    @Bean
+    public Jackson2ObjectMapperBuilderCustomizer customizer() {
+        return builder -> builder.mixIn(Object.class, IgnoreHandlerMixin.class);
     }
 }

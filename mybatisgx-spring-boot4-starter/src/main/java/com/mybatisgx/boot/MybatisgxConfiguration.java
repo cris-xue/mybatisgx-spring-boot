@@ -1,5 +1,6 @@
 package com.mybatisgx.boot;
 
+import com.github.pagehelper.PageInterceptor;
 import org.apache.ibatis.session.Configuration;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.boot.autoconfigure.SqlSessionFactoryBeanCustomizer;
@@ -33,5 +34,10 @@ public class MybatisgxConfiguration {
             ReflectionUtils.setField(field, mybatisgxConfiguration, value);
         });
         return mybatisgxConfiguration;
+    }
+
+    @Bean
+    public PageInterceptor pageInterceptor() {
+        return new PageInterceptor();
     }
 }
