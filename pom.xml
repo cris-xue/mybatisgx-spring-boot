@@ -88,7 +88,7 @@
 			<plugin>
 				<groupId>org.sonatype.central</groupId>
 				<artifactId>central-publishing-maven-plugin</artifactId>
-				<version>0.5.0</version>
+				<version>0.8.0</version>
 				<extensions>true</extensions>
 				<configuration>
 					<publishingServerId>central</publishingServerId>
@@ -121,8 +121,8 @@
 	</licenses>
 
 	<scm>
-		<connection>scm:git:git://github.com/cris-xue/mybatisgx-spring-boot.git</connection>
-		<developerConnection>scm:git:ssh://github.com/cris-xue/mybatisgx-spring-boot.git</developerConnection>
+		<connection>scm:git:https://github.com/cris-xue/mybatisgx-spring-boot.git</connection>
+		<developerConnection>scm:git:https://github.com/cris-xue/mybatisgx-spring-boot.git</developerConnection>
 		<url>https://github.com/cris-xue/mybatisgx-spring-boot</url>
 		<tag>HEAD</tag>
 	</scm>
