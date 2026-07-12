@@ -1,7 +1,9 @@
 package com.mybatisgx.boot;
 
 import com.github.pagehelper.PageInterceptor;
+import com.mybatisgx.ext.scripting.xmltags.MgxsqlLanguageDriver;
 import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.type.TypeAliasRegistry;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.boot.autoconfigure.SqlSessionFactoryBeanCustomizer;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +21,8 @@ public class MybatisgxConfiguration {
             field.setAccessible(true);
             Configuration configuration = (Configuration) ReflectionUtils.getField(field, factoryBean);
             com.mybatisgx.ext.session.MybatisgxConfiguration mybatisgxConfiguration = this.copyNonFinalFields(configuration);
+            TypeAliasRegistry typeAliasRegistry = mybatisgxConfiguration.getTypeAliasRegistry();
+            typeAliasRegistry.registerAlias("mgxsql", MgxsqlLanguageDriver.class);
             factoryBean.setConfiguration(mybatisgxConfiguration);
         };
     }
