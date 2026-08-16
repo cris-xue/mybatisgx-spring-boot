@@ -1,4 +1,4 @@
-package com.mybatisgx.boot.mp;
+package com.mybatisgx.boot;
 
 import com.mybatisgx.spring.SqlSessionFactoryBeanPostProcessor;
 import org.springframework.beans.factory.config.ConstructorArgumentValues;
@@ -15,14 +15,14 @@ import org.springframework.core.type.AnnotationMetadata;
  *
  * @author ccxuef
  * @description MyBatisGX + MyBatis-Plus 共存扫描注册器
- * @date 2026/8/15
+ * @date 2026/8/16
  */
-public class MybatisgxMpRegistrar implements ImportBeanDefinitionRegistrar {
+public class MybatisgxRegistrar implements ImportBeanDefinitionRegistrar {
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
         AnnotationAttributes annotationAttributes = AnnotationAttributes
-                .fromMap(importingClassMetadata.getAnnotationAttributes(MybatisgxMpScan.class.getName()));
+                .fromMap(importingClassMetadata.getAnnotationAttributes(MybatisgxScan.class.getName()));
 
         if (annotationAttributes != null) {
             String[] entityBasePackages = (String[]) annotationAttributes.get("entityBasePackages");

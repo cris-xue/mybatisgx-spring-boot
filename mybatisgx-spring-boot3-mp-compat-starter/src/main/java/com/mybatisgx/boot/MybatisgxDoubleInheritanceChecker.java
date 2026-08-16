@@ -1,4 +1,4 @@
-package com.mybatisgx.boot.mp;
+package com.mybatisgx.boot;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.mybatisgx.dao.Dao;
@@ -19,11 +19,11 @@ import java.util.Collection;
  *
  * @author ccxuef
  * @description MyBatisGX + MyBatis-Plus 共存双继承检测器
- * @date 2026/8/15
+ * @date 2026/8/16
  */
-public class MybatisgxMpDoubleInheritanceChecker implements BeanPostProcessor {
+public class MybatisgxDoubleInheritanceChecker implements BeanPostProcessor {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MybatisgxMpDoubleInheritanceChecker.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MybatisgxDoubleInheritanceChecker.class);
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) {

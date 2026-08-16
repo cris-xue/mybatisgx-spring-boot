@@ -1,4 +1,4 @@
-package com.mybatisgx.boot.mp;
+package com.mybatisgx.boot;
 
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration;
 import com.baomidou.mybatisplus.autoconfigure.SqlSessionFactoryBeanCustomizer;
@@ -32,9 +32,9 @@ import java.lang.reflect.Modifier;
  */
 @AutoConfiguration
 @ConditionalOnClass({MybatisPlusAutoConfiguration.class, MybatisSqlSessionFactoryBean.class, MybatisgxPlusConfiguration.class})
-public class MybatisgxMpCompatAutoConfiguration {
+public class MybatisgxCompatAutoConfiguration {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MybatisgxMpCompatAutoConfiguration.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MybatisgxCompatAutoConfiguration.class);
 
     /**
      * 将 MP 构建的 MybatisConfiguration 替换为 MybatisgxPlusConfiguration。
@@ -60,8 +60,8 @@ public class MybatisgxMpCompatAutoConfiguration {
      * 双继承检测：同一接口同时继承 BaseMapper 与 Dao 时启动报错。
      */
     @Bean
-    public static MybatisgxMpDoubleInheritanceChecker mybatisgxMpDoubleInheritanceChecker() {
-        return new MybatisgxMpDoubleInheritanceChecker();
+    public static MybatisgxDoubleInheritanceChecker mybatisgxMpDoubleInheritanceChecker() {
+        return new MybatisgxDoubleInheritanceChecker();
     }
 
     private void copyNonFinalFields(Configuration source, MybatisgxPlusConfiguration target) {
