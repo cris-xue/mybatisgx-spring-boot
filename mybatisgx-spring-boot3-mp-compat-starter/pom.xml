@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.mybatisgx</groupId>
+		<artifactId>mybatisgx-spring-boot</artifactId>
+		<version>0.3.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<artifactId>mybatisgx-spring-boot3-mp-compat-starter</artifactId>
+	<name>mybatisgx-spring-boot3-mp-compat-starter</name>
+	<url>http://www.mybatisgx.com</url>
+
+	<description>
+		Spring Boot 3 starter for MyBatisGX + MyBatis-Plus coexistence.
+		Enables incremental adoption: keep existing MP mappers untouched while adding MyBatisGX DAOs.
+	</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<java.version>17</java.version>
+		<mybatis-plus.version>3.5.4.1</mybatis-plus.version>
+	</properties>
+
+	<dependencies>
+		<!-- MyBatisGX 核心与 Spring 集成（含 SqlSessionFactoryBeanPostProcessor） -->
+		<dependency>
+			<groupId>com.mybatisgx</groupId>
+			<artifactId>mybatisgx-core</artifactId>
+			<version>0.3.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mybatisgx</groupId>
+			<artifactId>mybatisgx-spring</artifactId>
+			<version>0.3.1-SNAPSHOT</version>
+		</dependency>
+		<!-- MyBatisGX + MyBatis-Plus 共存 Configuration -->
+		<dependency>
+			<groupId>com.mybatisgx</groupId>
+			<artifactId>mybatisgx-mybatis-plus-compat</artifactId>
+			<version>0.3.1-SNAPSHOT</version>
+		</dependency>
+
+		<!-- MyBatis-Plus Boot3 starter：提供 MP 自动配置与 SqlSessionFactory 创建（含 spring-boot/spring 传递依赖） -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+			<version>${mybatis-plus.version}</version>
+		</dependency>
+
+		<!-- 统一 mybatis 版本：跟随 mybatisgx-spring-boot3-starter（mybatis-spring-boot-starter 3.0.3 → mybatis 3.5.14），
+		     与 master 的 core-patch 3.5.6 编译基线二进制兼容（getMappedColumnNames 仍为 List），避免 NoSuchMethodError。
+		     注意：MP 3.5.4.1 适配 Spring Boot 3.1（其 ddlApplicationRunner 返回 null 与 SB 3.2 不兼容），
+		     共存场景请使用 Spring Boot 3.1.x；mybatis-spring 使用 MP 3.5.4.1 传递的 3.0.2 即可 -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.5.14</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+	</build>
+</project>

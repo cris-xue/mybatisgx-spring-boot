@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.mybatisgx</groupId>
+		<artifactId>mybatisgx-spring-boot</artifactId>
+		<version>0.3.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<artifactId>mybatisgx-spring-boot2-mp-compat-starter</artifactId>
+	<name>mybatisgx-spring-boot2-mp-compat-starter</name>
+	<url>http://www.mybatisgx.com</url>
+
+	<description>
+		Spring Boot 2 starter for MyBatisGX + MyBatis-Plus coexistence.
+		Enables incremental adoption: keep existing MP mappers untouched while adding MyBatisGX DAOs.
+	</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<java.version>1.8</java.version>
+		<!-- 与 mybatisgx-spring-boot2-starter 保持一致的 mybatis-spring 版本 -->
+		<mybatis.spring.version>2.0.6</mybatis.spring.version>
+		<mybatis-plus.version>3.5.0</mybatis-plus.version>
+		<jackson.version>2.19.0</jackson.version>
+		<junit.version>4.11</junit.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>5.3.37</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>2.1.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>${mybatis.spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.mybatisgx</groupId>
+				<artifactId>mybatisgx-core</artifactId>
+				<version>0.3.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mybatisgx</groupId>
+				<artifactId>mybatisgx-spring</artifactId>
+				<version>0.3.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mybatisgx</groupId>
+				<artifactId>mybatisgx-mybatis-plus-compat</artifactId>
+				<version>0.3.1-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<!-- MyBatisGX 核心与 Spring 集成（含 SqlSessionFactoryBeanPostProcessor） -->
+		<dependency>
+			<groupId>com.mybatisgx</groupId>
+			<artifactId>mybatisgx-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mybatisgx</groupId>
+			<artifactId>mybatisgx-spring</artifactId>
+		</dependency>
+		<!-- MyBatisGX + MyBatis-Plus 共存 Configuration -->
+		<dependency>
+			<groupId>com.mybatisgx</groupId>
+			<artifactId>mybatisgx-mybatis-plus-compat</artifactId>
+		</dependency>
+
+		<!-- MyBatis-Plus sb2 starter：提供 MP 自动配置与 SqlSessionFactory 创建 -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-boot-starter</artifactId>
+			<version>${mybatis-plus.version}</version>
+		</dependency>
+
+		<!-- mybatis-spring-boot-starter 2.1.4 与 mybatisgx-spring-boot2-starter 保持一致；
+		     mybatis 版本显式声明 3.5.9（MP 3.5.0 要求，getMappedColumnNames 仍为 List，
+		     与 master 的 core-patch 3.5.6 编译基线二进制兼容，避免 NoSuchMethodError） -->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.5.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+	</build>
+</project>

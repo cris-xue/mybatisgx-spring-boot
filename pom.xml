@@ -13,6 +13,8 @@
 		<module>./mybatisgx-spring-boot2-starter/pom.xml</module>
 		<module>./mybatisgx-spring-boot3-starter/pom.xml</module>
 		<module>./mybatisgx-spring-boot4-starter/pom.xml</module>
+		<module>./mybatisgx-spring-boot2-mp-compat-starter/pom.xml</module>
+		<module>./mybatisgx-spring-boot3-mp-compat-starter/pom.xml</module>
 	</modules>
 
 	<description>
