@@ -24,6 +24,8 @@
 		<maven.compiler.target>17</maven.compiler.target>
 		<java.version>17</java.version>
 		<mybatis-plus.version>3.5.4.1</mybatis-plus.version>
+		<jackson.version>2.15.3</jackson.version>
+		<spring.version>6.0.15</spring.version>
 	</properties>
 
 	<dependencies>
@@ -60,6 +62,21 @@
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>3.5.14</version>
+		</dependency>
+
+		<!-- jackson-annotations：IgnoreHandlerMixin（懒加载代理 handler 字段序列化忽略）需要 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<!-- spring-web：Jackson2ObjectMapperBuilderCustomizer 需要（spring-boot-starter-web 间接提供，
+		     此处显式声明保证非 web 场景也能装配懒加载序列化定制） -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 	</dependencies>
 

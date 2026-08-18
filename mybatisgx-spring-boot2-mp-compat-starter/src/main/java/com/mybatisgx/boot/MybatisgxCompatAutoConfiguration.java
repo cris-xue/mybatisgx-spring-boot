@@ -4,10 +4,14 @@ import com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties;
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusPropertiesCustomizer;
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
+import com.github.pagehelper.PageInterceptor;
+import com.mybatisgx.ext.scripting.xmltags.MgxsqlLanguageDriver;
 import com.mybatisgx.mybatisplus.MybatisgxPlusConfiguration;
+import org.apache.ibatis.type.TypeAliasRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -44,9 +48,35 @@ public class MybatisgxCompatAutoConfiguration {
     @Bean
     public MybatisPlusPropertiesCustomizer mybatisgxPlusConfigurationCustomizer() {
         return properties -> {
-            properties.setConfiguration(new MybatisgxPlusConfiguration());
+            MybatisgxPlusConfiguration mybatisgxPlusConfiguration = new MybatisgxPlusConfiguration();
+            // 注册 mgxsql 别名（标准 starter 通过 ConfigurationCustomizer 注册，
+            // 共存模式 factory 由 MP 创建不回调该接口，故在此直接注册）
+            TypeAliasRegistry typeAliasRegistry = mybatisgxPlusConfiguration.getTypeAliasRegistry();
+            typeAliasRegistry.registerAlias("mgxsql", MgxsqlLanguageDriver.class);
+            properties.setConfiguration(mybatisgxPlusConfiguration);
             LOGGER.info("MyBatisGX: replace MybatisConfiguration with MybatisgxPlusConfiguration for MP coexistence");
         };
+    }
+
+    /**
+     * PageHelper 分页拦截器：MyBatisGX 分页方法（带 Pageable 参数）依赖此拦截器
+     * 消费 ThreadLocal 改写 SQL、回填 total。
+     *
+     * <p>与 MP 的 MybatisPlusInterceptor 判别机制互斥——PageHelper 靠 ThreadLocal，
+     * MP 靠入参 IPage，两者同链不互相误触发。</p>
+     */
+    @Bean
+    public PageInterceptor pageInterceptor() {
+        return new PageInterceptor();
+    }
+
+    /**
+     * Jackson 混入：序列化时忽略 MyBatis 懒加载代理对象的 handler 字段，
+     * 否则 MyBatisGX 关联查询懒加载序列化会报错。
+     */
+    @Bean
+    public Jackson2ObjectMapperBuilderCustomizer mybatisgxJacksonCustomizer() {
+        return builder -> builder.mixIn(Object.class, IgnoreHandlerMixin.class);
     }
 
     /**
