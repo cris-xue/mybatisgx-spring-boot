@@ -34,15 +34,4 @@ public class MybatisgxAutoConfiguration extends MybatisAutoConfiguration {
                                       ObjectProvider<List<SqlSessionFactoryBeanCustomizer>> sqlSessionFactoryBeanCustomizers) {
         super(properties, interceptorsProvider, typeHandlersProvider, languageDriversProvider, resourceLoader, databaseIdProvider, configurationCustomizersProvider, sqlSessionFactoryBeanCustomizers);
     }
-
-    /*@Override
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-        SqlSessionFactory sqlSessionFactory = super.sqlSessionFactory(dataSource);
-        return new MybatisgxDefaultSqlSessionFactory(sqlSessionFactory);
-    }*/
-
-    /*@Override
-    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
-        return new MybatisxSqlSessionTemplate(sqlSessionFactory);
-    }*/
 }

@@ -10,9 +10,7 @@ import org.mybatis.spring.boot.autoconfigure.SqlSessionFactoryBeanCustomizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.ObjectProvider;
-import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ResourceLoader;
 
@@ -36,17 +34,4 @@ public class MybatisgxAutoConfiguration extends MybatisAutoConfiguration {
                                       ObjectProvider<List<SqlSessionFactoryBeanCustomizer>> sqlSessionFactoryBeanCustomizers) {
         super(properties, interceptorsProvider, typeHandlersProvider, languageDriversProvider, resourceLoader, databaseIdProvider, configurationCustomizersProvider, sqlSessionFactoryBeanCustomizers);
     }
-
-    /*@Override
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-        SqlSessionFactory sqlSessionFactory = super.sqlSessionFactory(dataSource);
-        return new MybatisgxDefaultSqlSessionFactory(sqlSessionFactory);
-    }*/
-
-
-
-    /*@Override
-    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
-        return new MybatisxSqlSessionTemplate(sqlSessionFactory);
-    }*/
 }
