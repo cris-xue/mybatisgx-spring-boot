@@ -29,7 +29,10 @@ public class MybatisgxConfiguration {
         return factoryBean -> {
             com.mybatisgx.ext.session.MybatisgxConfiguration mybatisgxConfiguration = new com.mybatisgx.ext.session.MybatisgxConfiguration();
             MybatisProperties.CoreConfiguration coreConfiguration = mybatisgxProperties.getConfiguration();
-            coreConfiguration.applyTo(mybatisgxConfiguration);
+            // 未配置 mybatisgx.configuration.* 时 CoreConfiguration 为 null，需空判断
+            if (coreConfiguration != null) {
+                coreConfiguration.applyTo(mybatisgxConfiguration);
+            }
             if (mybatisgxConfiguration != null && !CollectionUtils.isEmpty(this.configurationCustomizers)) {
                 for (ConfigurationCustomizer customizer : this.configurationCustomizers) {
                     customizer.customize(mybatisgxConfiguration);

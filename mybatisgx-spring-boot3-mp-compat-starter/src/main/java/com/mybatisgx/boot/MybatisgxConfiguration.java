@@ -27,9 +27,12 @@ public class MybatisgxConfiguration {
     public SqlSessionFactoryBeanCustomizer mybatisgxPlusSqlSessionFactoryBeanCustomizer(MybatisgxProperties mybatisgxProperties) {
         return factoryBean -> {
             MybatisgxPlusConfiguration mybatisgxPlusConfiguration = new MybatisgxPlusConfiguration();
+            // 未配置 mybatisgx.configuration.* 时 CoreConfiguration 为 null（MP 3.5.17 不预初始化），需空判断
             MybatisgxProperties.CoreConfiguration coreConfiguration = mybatisgxProperties.getConfiguration();
-            coreConfiguration.applyTo(mybatisgxPlusConfiguration);
-            if (mybatisgxPlusConfiguration != null && !CollectionUtils.isEmpty(this.configurationCustomizers)) {
+            if (coreConfiguration != null) {
+                coreConfiguration.applyTo(mybatisgxPlusConfiguration);
+            }
+            if (!CollectionUtils.isEmpty(this.configurationCustomizers)) {
                 for (ConfigurationCustomizer customizer : this.configurationCustomizers) {
                     customizer.customize(mybatisgxPlusConfiguration);
                 }
