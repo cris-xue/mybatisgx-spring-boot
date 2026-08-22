@@ -25,6 +25,6 @@ public class MybatisgxProperties extends MybatisPlusProperties {
     public MybatisPlusProperties setConfiguration(MybatisConfiguration configuration) {
         this.configuration = (MybatisgxPlusConfiguration) configuration;
         super.setConfiguration(configuration);
-        return null;
+        return this;
     }
 }
