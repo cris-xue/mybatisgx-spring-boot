@@ -21,9 +21,11 @@ public class MybatisgxRegistrar implements ImportBeanDefinitionRegistrar {
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
-        AnnotationAttributes annotationAttributes = AnnotationAttributes
-                .fromMap(importingClassMetadata.getAnnotationAttributes(MybatisgxScan.class.getName()));
+        this.registrySqlSessionFactoryBeanPostProcessor(importingClassMetadata, registry);
+    }
 
+    private void registrySqlSessionFactoryBeanPostProcessor(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
+        AnnotationAttributes annotationAttributes = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes(MybatisgxScan.class.getName()));
         if (annotationAttributes != null) {
             String[] entityBasePackages = (String[]) annotationAttributes.get("entityBasePackages");
             String[] daoBasePackages = (String[]) annotationAttributes.get("daoBasePackages");
@@ -31,10 +33,10 @@ public class MybatisgxRegistrar implements ImportBeanDefinitionRegistrar {
             ConstructorArgumentValues constructorArgumentValues = new ConstructorArgumentValues();
             constructorArgumentValues.addIndexedArgumentValue(0, entityBasePackages);
             constructorArgumentValues.addIndexedArgumentValue(1, daoBasePackages);
-            GenericBeanDefinition sqlSessionFactoryBeanPostProcessorBeanDefinition = new GenericBeanDefinition();
-            sqlSessionFactoryBeanPostProcessorBeanDefinition.setBeanClass(SqlSessionFactoryBeanPostProcessor.class);
-            sqlSessionFactoryBeanPostProcessorBeanDefinition.setConstructorArgumentValues(constructorArgumentValues);
-            registry.registerBeanDefinition("sqlSessionFactoryBeanPostProcessorBeanDefinition", sqlSessionFactoryBeanPostProcessorBeanDefinition);
+            GenericBeanDefinition genericBeanDefinition = new GenericBeanDefinition();
+            genericBeanDefinition.setBeanClass(SqlSessionFactoryBeanPostProcessor.class);
+            genericBeanDefinition.setConstructorArgumentValues(constructorArgumentValues);
+            registry.registerBeanDefinition("sqlSessionFactoryBeanPostProcessor", genericBeanDefinition);
         }
     }
 }

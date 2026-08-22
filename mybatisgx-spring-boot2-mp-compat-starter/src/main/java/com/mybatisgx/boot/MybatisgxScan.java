@@ -1,29 +1,55 @@
 package com.mybatisgx.boot;
 
+import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.mapper.MapperFactoryBean;
+import org.springframework.beans.factory.support.BeanNameGenerator;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.*;
 
 /**
- * MyBatisGX + MyBatis-Plus 共存扫描注解
- *
- * <p>与标准 {@code @MybatisgxScan} 同名，但在共存 starter 中独立提供，
- * 避免依赖 mybatisgx-spring-boot2-starter 的自动配置。
- * 与标准版不同，此处不含 {@code @MapperScan} 组合：共存模式下 MyBatisGX DAO 与 MP mapper
- * 分别位于不同包，需在启动类用显式 {@code @MapperScan} 声明扫描范围，避免注解合并冲突。</p>
- *
- * @author ccxuef
- * @description MyBatisGX + MyBatis-Plus 共存扫描注解
- * @date 2026/8/16
+ * @author ：薛承城
+ * @description：开启枚举包装类的端点
+ * @date ：2020/1/7 16:52
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
+@MapperScan
 @Import({MybatisgxRegistrar.class})
 public @interface MybatisgxScan {
 
     String[] entityBasePackages();
 
+    @AliasFor(annotation = MapperScan.class, attribute = "basePackages")
     String[] daoBasePackages();
+
+    @AliasFor(annotation = MapperScan.class, attribute = "value")
+    String[] value() default {};
+
+    @AliasFor(annotation = MapperScan.class, attribute = "basePackageClasses")
+    Class<?>[] basePackageClasses() default {};
+
+    @AliasFor(annotation = MapperScan.class, attribute = "nameGenerator")
+    Class<? extends BeanNameGenerator> nameGenerator() default BeanNameGenerator.class;
+
+    @AliasFor(annotation = MapperScan.class, attribute = "annotationClass")
+    Class<? extends Annotation> annotationClass() default Annotation.class;
+
+    @AliasFor(annotation = MapperScan.class, attribute = "markerInterface")
+    Class<?> markerInterface() default Class.class;
+
+    @AliasFor(annotation = MapperScan.class, attribute = "sqlSessionTemplateRef")
+    String sqlSessionTemplateRef() default "";
+
+    @AliasFor(annotation = MapperScan.class, attribute = "sqlSessionFactoryRef")
+    String sqlSessionFactoryRef() default "";
+
+    @AliasFor(annotation = MapperScan.class, attribute = "factoryBean")
+    Class<? extends MapperFactoryBean> factoryBean() default MapperFactoryBean.class;
+
+    // @AliasFor(annotation = MapperScan.class, attribute = "lazyInitialization")
+    // String lazyInitialization() default "";
 }

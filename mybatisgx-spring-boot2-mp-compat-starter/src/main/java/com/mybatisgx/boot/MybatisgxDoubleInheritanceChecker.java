@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.core.Ordered;
 
 import java.util.Collection;
 
@@ -21,7 +22,7 @@ import java.util.Collection;
  * @description MyBatisGX + MyBatis-Plus 共存双继承检测器
  * @date 2026/8/15
  */
-public class MybatisgxDoubleInheritanceChecker implements BeanPostProcessor {
+public class MybatisgxDoubleInheritanceChecker implements BeanPostProcessor, Ordered {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MybatisgxDoubleInheritanceChecker.class);
 
@@ -51,5 +52,10 @@ public class MybatisgxDoubleInheritanceChecker implements BeanPostProcessor {
      */
     public static boolean isDoubleInheritance(Class<?> mapperClass) {
         return BaseMapper.class.isAssignableFrom(mapperClass) && Dao.class.isAssignableFrom(mapperClass);
+    }
+
+    @Override
+    public int getOrder() {
+        return 1;
     }
 }
