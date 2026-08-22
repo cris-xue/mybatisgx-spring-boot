@@ -39,12 +39,6 @@ public class MybatisgxCompatAutoConfiguration {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MybatisgxCompatAutoConfiguration.class);
 
-    /**
-     * 将 MP 的 {@link MybatisPlusProperties#configuration} 替换为 MybatisgxPlusConfiguration。
-     *
-     * <p>MP 3.5.0 的 applyConfiguration 在未显式设置 configuration 时会 new MybatisConfiguration，
-     * 此处提前替换，使 MP 创建 factory 时直接使用 MybatisgxPlusConfiguration。</p>
-     */
     @Bean
     public MybatisPlusPropertiesCustomizer mybatisgxPlusConfigurationCustomizer() {
         return properties -> {

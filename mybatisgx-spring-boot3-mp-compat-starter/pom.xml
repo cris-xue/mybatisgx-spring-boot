@@ -23,12 +23,15 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		<java.version>17</java.version>
-		<mybatis-plus.version>3.5.4.1</mybatis-plus.version>
-		<jackson.version>2.15.3</jackson.version>
-		<spring.version>6.0.15</spring.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>6.0.15</version>
+		</dependency>
+
 		<!-- MyBatisGX 核心与 Spring 集成（含 SqlSessionFactoryBeanPostProcessor） -->
 		<dependency>
 			<groupId>com.mybatisgx</groupId>
@@ -51,32 +54,23 @@
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-spring-boot3-starter</artifactId>
-			<version>${mybatis-plus.version}</version>
+			<version>3.5.17</version>
 		</dependency>
-
-		<!-- 统一 mybatis 版本：跟随 mybatisgx-spring-boot3-starter（mybatis-spring-boot-starter 3.0.3 → mybatis 3.5.14），
-		     与 master 的 core-patch 3.5.6 编译基线二进制兼容（getMappedColumnNames 仍为 List），避免 NoSuchMethodError。
-		     注意：MP 3.5.4.1 适配 Spring Boot 3.1（其 ddlApplicationRunner 返回 null 与 SB 3.2 不兼容），
-		     共存场景请使用 Spring Boot 3.1.x；mybatis-spring 使用 MP 3.5.4.1 传递的 3.0.2 即可 -->
 		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.5.14</version>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-extension</artifactId>
+			<version>3.5.17</version>
+		</dependency>
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-jsqlparser</artifactId>
+			<version>3.5.17</version>
 		</dependency>
 
-		<!-- jackson-annotations：IgnoreHandlerMixin（懒加载代理 handler 字段序列化忽略）需要 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-
-		<!-- spring-web：Jackson2ObjectMapperBuilderCustomizer 需要（spring-boot-starter-web 间接提供，
-		     此处显式声明保证非 web 场景也能装配懒加载序列化定制） -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>${spring.version}</version>
+			<version>2.15.3</version>
 		</dependency>
 	</dependencies>
 
