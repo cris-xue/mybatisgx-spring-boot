@@ -26,9 +26,6 @@ public @interface MybatisgxScan {
     @AliasFor(annotation = MapperScan.class, attribute = "basePackages")
     String[] daoBasePackages();
 
-    @AliasFor(annotation = MapperScan.class, attribute = "value")
-    String[] value() default {};
-
     @AliasFor(annotation = MapperScan.class, attribute = "basePackageClasses")
     Class<?>[] basePackageClasses() default {};
 
