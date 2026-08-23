@@ -1,0 +1,29 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:mp_compat_db;MODE=MySQL;LOCK_TIMEOUT=10000;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE
+    username: sa
+    password:
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+
+mybatisgx:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    databaseId: MySQL
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+  global-config:
+    banner: false
+    db-config:
+      # H2 自增主键回填：数据库驱动返回生成键
+      id-type: auto
+
+logging:
+  level:
+    com.mybatisgx: DEBUG
+    com.baomidou: DEBUG

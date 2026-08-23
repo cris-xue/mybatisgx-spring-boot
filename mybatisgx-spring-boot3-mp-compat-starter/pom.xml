@@ -72,9 +72,58 @@
 			<artifactId>jackson-annotations</artifactId>
 			<version>2.15.3</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<version>3.1.5</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- MP 3.5.17 传递引入 spring-boot 3.5.9（logback 1.5.x），与 spring-boot-starter-test 3.1.5（logback 1.4.x）
+		     混用会导致 logback 初始化失败；depth-1 显式 pin spring-boot/autoconfigure 3.1.5 把整个 Boot 3.1 世代对齐 -->
+		<!--<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot</artifactId>
+			<version>3.1.5</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+			<version>3.1.5</version>
+			<scope>test</scope>
+		</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<version>3.1.5</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- mybatisgx-core 传递引入 slf4j-api 1.7.x，与 Boot 3 的 logback 1.4.x（需 slf4j 2.x）冲突，测试 classpath 显式对齐 slf4j 2.x（示例工程同样显式声明） -->
+		<!--<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.0.17</version>
+			<scope>test</scope>
+		</dependency>-->
+		<!-- H2：测试环境代替 MySQL，兼容 MySQL 模式 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>2.1.212</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<!-- JUnit 5 需要 surefire 3.x -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.1.2</version>
+			</plugin>
+		</plugins>
 	</build>
 </project>
