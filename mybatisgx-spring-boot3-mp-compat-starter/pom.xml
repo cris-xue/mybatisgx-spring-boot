@@ -36,18 +36,18 @@
 		<dependency>
 			<groupId>com.mybatisgx</groupId>
 			<artifactId>mybatisgx-core</artifactId>
-			<version>0.3.1-SNAPSHOT</version>
+			<version>${mybatisgx.sb3.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.mybatisgx</groupId>
 			<artifactId>mybatisgx-spring</artifactId>
-			<version>0.3.1-SNAPSHOT</version>
+			<version>${mybatisgx.sb3.version}</version>
 		</dependency>
 		<!-- MyBatisGX + MyBatis-Plus 共存 Configuration -->
 		<dependency>
 			<groupId>com.mybatisgx</groupId>
 			<artifactId>mybatisgx-mybatis-plus-compat</artifactId>
-			<version>0.3.1-SNAPSHOT</version>
+			<version>${mybatisgx.sb3.version}</version>
 		</dependency>
 
 		<!-- MyBatis-Plus Boot3 starter：提供 MP 自动配置与 SqlSessionFactory 创建（含 spring-boot/spring 传递依赖） -->
