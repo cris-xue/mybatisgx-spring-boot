@@ -5,10 +5,12 @@ import com.baomidou.mybatisplus.autoconfigure.SqlSessionFactoryBeanCustomizer;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.github.pagehelper.PageInterceptor;
+import com.mybatisgx.executor.keygen.SnowKeyGenerator;
 import com.mybatisgx.ext.scripting.xmltags.MgxsqlLanguageDriver;
 import com.mybatisgx.mybatisplus.MybatisgxPlusConfiguration;
 import org.apache.ibatis.type.TypeAliasRegistry;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.CollectionUtils;
@@ -66,5 +68,11 @@ public class MybatisgxConfiguration {
     @Bean
     public static MybatisgxDoubleInheritanceChecker mybatisgxMpDoubleInheritanceChecker() {
         return new MybatisgxDoubleInheritanceChecker();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public SnowKeyGenerator snowKeyGenerator() {
+        return new SnowKeyGenerator();
     }
 }

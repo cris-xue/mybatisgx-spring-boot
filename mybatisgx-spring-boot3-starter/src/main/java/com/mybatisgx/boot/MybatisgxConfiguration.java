@@ -1,12 +1,14 @@
 package com.mybatisgx.boot;
 
 import com.github.pagehelper.PageInterceptor;
+import com.mybatisgx.executor.keygen.SnowKeyGenerator;
 import com.mybatisgx.ext.scripting.xmltags.MgxsqlLanguageDriver;
 import org.apache.ibatis.type.TypeAliasRegistry;
 import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
 import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
 import org.mybatis.spring.boot.autoconfigure.SqlSessionFactoryBeanCustomizer;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.CollectionUtils;
@@ -49,5 +51,11 @@ public class MybatisgxConfiguration {
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer customizer() {
         return builder -> builder.mixIn(Object.class, IgnoreHandlerMixin.class);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public SnowKeyGenerator snowKeyGenerator() {
+        return new SnowKeyGenerator();
     }
 }

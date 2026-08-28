@@ -1,6 +1,7 @@
 package com.mybatisgx.boot;
 
 import com.github.pagehelper.PageInterceptor;
+import com.mybatisgx.executor.keygen.SnowKeyGenerator;
 import com.mybatisgx.ext.scripting.xmltags.MgxsqlLanguageDriver;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.type.TypeAliasRegistry;
@@ -8,6 +9,7 @@ import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
 import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
 import org.mybatis.spring.boot.autoconfigure.SqlSessionFactoryBeanCustomizer;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ReflectionUtils;
@@ -64,5 +66,11 @@ public class MybatisgxConfiguration {
     @Bean
     public PageInterceptor pageInterceptor() {
         return new PageInterceptor();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public SnowKeyGenerator snowKeyGenerator() {
+        return new SnowKeyGenerator();
     }
 }
