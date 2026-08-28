@@ -24,13 +24,16 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<java.version>1.8</java.version>
 		<mybatisgx.version>0.4.0</mybatisgx.version>
+		<spring.web.version>5.3.37</spring.web.version>
+		<mybatisplus.boot.version>3.5.6</mybatisplus.boot.version>
+		<jackson.version>2.19.0</jackson.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>5.3.37</version>
+			<version>${spring.web.version}</version>
 		</dependency>
 
 		<!-- MyBatisGX 核心与 Spring 集成（含 SqlSessionFactoryBeanPostProcessor） -->
@@ -50,13 +53,13 @@
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
-			<version>3.5.6</version>
+			<version>${mybatisplus.boot.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
-			<version>2.19.0</version>
+			<version>${jackson.version}</version>
 		</dependency>
 
 		<dependency>

@@ -23,13 +23,17 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		<java.version>17</java.version>
+		<spring.web.version>6.2.15</spring.web.version>
+		<mybatisplus.boot.version>3.5.17</mybatisplus.boot.version>
+		<mybatisplus.version>3.5.17</mybatisplus.version>
+		<jackson.version>2.19.0</jackson.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>6.2.15</version>
+			<version>${spring.web.version}</version>
 		</dependency>
 
 		<!-- MyBatisGX 核心与 Spring 集成（含 SqlSessionFactoryBeanPostProcessor） -->
@@ -54,23 +58,23 @@
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-spring-boot3-starter</artifactId>
-			<version>3.5.17</version>
+			<version>${mybatisplus.boot.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-extension</artifactId>
-			<version>3.5.17</version>
+			<version>${mybatisplus.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-jsqlparser</artifactId>
-			<version>3.5.17</version>
+			<version>${mybatisplus.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
-			<version>2.15.3</version>
+			<version>${jackson.version}</version>
 		</dependency>
 
 		<dependency>
