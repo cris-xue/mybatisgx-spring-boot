@@ -27,6 +27,7 @@
 		<spring.web.version>5.3.37</spring.web.version>
 		<mybatisplus.boot.version>3.5.6</mybatisplus.boot.version>
 		<jackson.version>2.19.0</jackson.version>
+		<slf4j.api.version>1.7.36</slf4j.api.version>
 	</properties>
 
 	<dependencies>
@@ -35,7 +36,6 @@
 			<artifactId>spring-web</artifactId>
 			<version>${spring.web.version}</version>
 		</dependency>
-
 		<!-- MyBatisGX 核心与 Spring 集成（含 SqlSessionFactoryBeanPostProcessor） -->
 		<dependency>
 			<groupId>com.mybatisgx</groupId>
@@ -48,7 +48,6 @@
 			<artifactId>mybatisgx-mybatis-plus-compat</artifactId>
 			<version>${mybatisgx.sb2.version}</version>
 		</dependency>
-
 		<!-- MyBatis-Plus sb2 starter：提供 MP 自动配置与 SqlSessionFactory 创建 -->
 		<dependency>
 			<groupId>com.baomidou</groupId>
@@ -61,7 +60,13 @@
 			<artifactId>jackson-annotations</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.api.version}</version>
+		</dependency>
 
+		<!-- 单测依赖 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -74,7 +79,6 @@
 			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- H2：测试环境代替 MySQL，兼容 MySQL 模式 -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
