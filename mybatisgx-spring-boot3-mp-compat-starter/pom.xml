@@ -27,6 +27,7 @@
 		<mybatisplus.boot.version>3.5.17</mybatisplus.boot.version>
 		<mybatisplus.version>3.5.17</mybatisplus.version>
 		<jackson.version>2.19.0</jackson.version>
+		<slf4j.api.version>2.0.17</slf4j.api.version>
 	</properties>
 
 	<dependencies>
@@ -37,11 +38,6 @@
 		</dependency>
 
 		<!-- MyBatisGX 核心与 Spring 集成（含 SqlSessionFactoryBeanPostProcessor） -->
-		<dependency>
-			<groupId>com.mybatisgx</groupId>
-			<artifactId>mybatisgx-core</artifactId>
-			<version>${mybatisgx.sb3.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>com.mybatisgx</groupId>
 			<artifactId>mybatisgx-spring</artifactId>
@@ -77,6 +73,13 @@
 			<version>${jackson.version}</version>
 		</dependency>
 
+		<!-- mybatisgx-core 传递引入 slf4j-api 1.7.x，与 Boot 3 的 logback 1.5.x（需 slf4j 2.x）冲突，显式对齐 slf4j 2.x（main 代码直接使用 org.slf4j，须为 compile scope；示例工程同样显式声明） -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.api.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -91,13 +94,6 @@
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 			<version>3.5.9</version>
 			<scope>test</scope>
-		</dependency>
-		<!-- mybatisgx-core 传递引入 slf4j-api 1.7.x，与 Boot 3 的 logback 1.5.x（需 slf4j 2.x）冲突，
-		     显式对齐 slf4j 2.x（main 代码直接使用 org.slf4j，须为 compile scope；示例工程同样显式声明） -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>2.0.17</version>
 		</dependency>
 		<!-- H2：测试环境代替 MySQL，兼容 MySQL 模式 -->
 		<dependency>
